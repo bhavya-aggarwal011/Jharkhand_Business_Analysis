@@ -1,0 +1,124 @@
+City,Category,Business_Count,Website_Adoption_Pct
+Jamshedpur,School,14,100.0
+Jamshedpur,Hotel,13,100.0
+Jamshedpur,Restaurant,13,61.5
+Ranchi,School,13,100.0
+Dhanbad,School,12,100.0
+Ranchi,College,12,100.0
+Jamshedpur,Cafe,11,54.5
+Ranchi,Bank,10,100.0
+Latehar,ATM,10,100.0
+Ranchi,Hotel,10,100.0
+Deoghar,Cafe,9,100.0
+Hazaribagh,College,9,100.0
+Ranchi,Supermarket,9,100.0
+Jamshedpur,College,9,100.0
+Bokaro,Hospital,9,88.9
+Medininagar,Office,8,100.0
+Latehar,Restaurant,8,100.0
+Sahibganj,Clothing,8,100.0
+Ranchi,Hospital,8,100.0
+Jamshedpur,Bank,8,100.0
+Dhanbad,Cafe,7,100.0
+Dhanbad,College,7,85.7
+Dumka,Gym,7,100.0
+Dhanbad,Hotel,7,57.1
+Dumka,Cafe,7,100.0
+Gumla,College,7,100.0
+Deoghar,Grocery Store,7,100.0
+Dhanbad,Restaurant,7,71.4
+Giridih,Clinic,7,100.0
+Medininagar,School,7,100.0
+Ranchi,Bakery,7,100.0
+Latehar,Supermarket,7,100.0
+Hazaribagh,Hospital,7,85.7
+Hazaribagh,School,7,100.0
+Khunti,Mobile Store,7,100.0
+Ranchi,Grocery Store,7,100.0
+Medininagar,Hotel,7,100.0
+Latehar,Hardware,7,100.0
+Jamshedpur,Hospital,7,85.7
+Simdega,Furniture,7,100.0
+Latehar,School,7,100.0
+Khunti,ATM,6,100.0
+Koderma,Hospital,6,100.0
+Giridih,Electronics,6,100.0
+Khunti,Restaurant,6,100.0
+Dumka,Clinic,6,100.0
+Giridih,Salon,6,100.0
+Godda,Furniture,6,100.0
+Godda,Bank,6,100.0
+Gumla,Grocery Store,6,100.0
+Dumka,Office,6,100.0
+Dumka,Salon,6,100.0
+Dumka,College,6,100.0
+Deoghar,Restaurant,6,100.0
+Dhanbad,Bank,6,100.0
+Deoghar,Electronics,6,100.0
+Deoghar,Hardware,6,100.0
+Bokaro,School,6,100.0
+Dhanbad,Grocery Store,6,100.0
+Medininagar,Furniture,6,100.0
+Pakur,Bank,6,100.0
+Ranchi,Jewelry,6,100.0
+Ranchi,Furniture,6,100.0
+Sahibganj,Mobile Store,6,100.0
+Sahibganj,Grocery Store,6,100.0
+Pakur,Supermarket,6,100.0
+Ramgarh,Electronics,6,100.0
+Simdega,Mobile Store,6,100.0
+Pakur,Furniture,6,100.0
+Pakur,School,6,100.0
+Lohardaga,Office,6,100.0
+Jamshedpur,Electronics,6,100.0
+Dumka,Hotel,5,100.0
+Dumka,School,5,100.0
+Dumka,Clothing,5,100.0
+Chaibasa,School,5,100.0
+Chaibasa,Hotel,5,100.0
+Chaibasa,Fuel Station,5,100.0
+Chaibasa,Clinic,5,100.0
+Bokaro,Supermarket,5,100.0
+Bokaro,Hardware,5,100.0
+Bokaro,Bank,5,100.0
+Bokaro,Furniture,5,100.0
+Bokaro,ATM,5,100.0
+Chatra,Hospital,5,100.0
+Chatra,Supermarket,5,100.0
+Deoghar,ATM,5,100.0
+Chatra,Hardware,5,100.0
+Deoghar,Salon,5,100.0
+Deoghar,Supermarket,5,100.0
+Dhanbad,Clothing,5,100.0
+Hazaribagh,Clinic,5,100.0
+Hazaribagh,Cafe,5,100.0
+Hazaribagh,Bank,5,100.0
+Gumla,Jewelry,5,100.0
+Gumla,Gym,5,100.0
+Gumla,Hospital,5,100.0
+Giridih,Hotel,5,100.0
+Godda,Fuel Station,5,100.0
+Dumka,Furniture,5,100.0
+Dhanbad,Shopping Mall,5,20.0
+Dhanbad,Hospital,5,80.0
+Dhanbad,Jewelry,5,100.0
+Khunti,Hospital,5,100.0
+Khunti,College,5,100.0
+Khunti,Electronics,5,100.0
+Khunti,Bank,5,100.0
+Lohardaga,Bank,5,100.0
+Latehar,Clinic,5,100.0
+Latehar,Gym,5,100.0
+Latehar,Office,5,100.0
+Koderma,Grocery Store,5,100.0
+Koderma,Clinic,5,100.0
+Koderma,Jewelry,5,100.0
+Latehar,Bank,5,100.0
+Khunti,Cafe,5,100.0
+Medininagar,Supermarket,5,100.0
+Ramgarh,Jewelry,5,100.0
+Medininagar,Restaurant,5,100.0
+Medininagar,Fuel Station,5,100.0
+Medininagar,Electronics,5,100.0
+Medininagar,Clinic,5,100.0
+Ranchi,Clinic,5,100.0

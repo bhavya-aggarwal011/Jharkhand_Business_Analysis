@@ -1,0 +1,31 @@
+Business_Name,Category,City,Locality,Rating,Parking,Delivery,Digital_Opportunity_Score
+Bombay Brew Cafe,Cafe,Jamshedpur,Near Airport,4.6,Limited,Yes,66.9
+Chanoya Cafe,Cafe,Jamshedpur,Jamshedpur,4.4,Limited,Yes,61.0
+Brubeck Bakery,Bakery,Jamshedpur,Bistupur,4.5,Limited,Yes,58.2
+28 Downtown Cafe,Cafe,Jamshedpur,Sakchi,4.2,Limited,Yes,55.1
+Cafe Regal,Restaurant,Jamshedpur,Bistupur,4.2,Limited,Yes,54.4
+Caramel Patisserie,Bakery,Jamshedpur,Jamshedpur,4.3,Limited,Yes,52.3
+South Indian Cafe,Cafe,Jamshedpur,Bistupur,4.1,Limited,Yes,52.2
+Pool Cafe,Cafe,Jamshedpur,Jamshedpur,4.1,Limited,Yes,52.2
+Equinox Restaurant,Restaurant,Jamshedpur,Jamshedpur,4.1,Limited,Yes,51.4
+Le Bon,Restaurant,Jamshedpur,Jamshedpur,4.0,Limited,Yes,48.5
+Moti Mahal Jamshedpur,Restaurant,Jamshedpur,Jamshedpur,4.0,Limited,Yes,48.5
+London Street Bistro,Restaurant,Dhanbad,Dhanbad,4.0,Limited,Yes,48.5
+Novelty Restaurant,Restaurant,Jamshedpur,Bistupur,4.0,Limited,Yes,48.5
+Hotel Crystal International,Hotel,Dhanbad,Dhanbad,3.7,Yes,No,41.8
+Hotel Poddar Regency,Hotel,Dhanbad,Dhanbad,3.7,Yes,No,41.8
+Bokaro Mall,Shopping Mall,Bokaro,Chira Chas,4.2,Yes,No,41.5
+Netaji Subhas Institute of Technology,College,Dhanbad,Dhanbad,3.7,Yes,No,41.2
+Sonora Hotel,Hotel,Dhanbad,Dhanbad,3.6,Yes,No,38.8
+Ozone Plaza,Shopping Mall,Dhanbad,Bank More,4.0,Yes,No,35.6
+Spring City Mall,Shopping Mall,Ranchi,Ranchi,4.0,Yes,No,35.6
+Sadar Hospital Hazaribagh,Hospital,Hazaribagh,Demotand,3.5,Yes,No,35.5
+Sadar Hospital Dhanbad,Hospital,Dhanbad,Hirapur,3.4,Yes,No,32.6
+Sadar Hospital Bokaro,Hospital,Bokaro,Sector 4,3.4,Yes,No,32.6
+Pragati Food Plaza,Restaurant,Dhanbad,Govindpur,3.4,Limited,Yes,30.8
+Ozone Centre,Shopping Mall,Dhanbad,Bank More,3.8,Yes,No,29.7
+Super Centre Mall,Shopping Mall,Jamshedpur,Sakchi,3.8,Yes,No,29.7
+City Centre Dhanbad,Shopping Mall,Dhanbad,Dhanbad,3.8,Yes,No,29.7
+Sadar Hospital Jamshedpur,Hospital,Jamshedpur,Sakchi,3.3,Yes,No,29.6
+Harsh Vardhan Plaza,Shopping Mall,Bokaro,Bokaro,3.7,Yes,No,26.8
+Sriram Plaza,Shopping Mall,Dhanbad,Dhanbad,3.6,Yes,No,23.8
