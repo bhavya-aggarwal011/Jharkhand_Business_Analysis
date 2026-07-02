@@ -124,8 +124,6 @@ python -m streamlit run app.py
 
 ## 📸 Dashboard Preview
 
-You can add screenshots here.
-
 ### Dashboard
 
 ```
