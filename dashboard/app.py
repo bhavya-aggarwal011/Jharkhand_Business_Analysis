@@ -12,6 +12,14 @@ import folium
 from folium.plugins import MarkerCluster
 from folium import Element
 from streamlit_folium import st_folium
+from folium.plugins import (
+    MarkerCluster,
+    Fullscreen,
+    MiniMap,
+    MousePosition,
+    MeasureControl,
+    LocateControl,
+)
 
 # ----------------------------------------------------------------------
 # PAGE CONFIG
@@ -137,31 +145,44 @@ st.markdown(
 
 
 def style_fig(fig, height=420, legend=True):
+
     fig.update_layout(
+
         font=dict(
             family=FONT_BODY,
             size=13,
-            color="white"          # Force all text to white
-        ),
-
-        title_font=dict(
-            family=FONT_DISPLAY,
-            size=16,
             color="white"
         ),
 
-        plot_bgcolor="rgba(0,0,0,0)",
-        paper_bgcolor="rgba(0,0,0,0)",
+        title=dict(
+            x=0,
+            xanchor="left",
+            font=dict(
+                family=FONT_DISPLAY,
+                size=18,
+                color="white"
+            )
+        ),
 
-        margin=dict(t=30, b=30, l=10, r=10),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+
+        margin=dict(
+            t=35,
+            b=30,
+            l=10,
+            r=10
+        ),
 
         height=height,
-
         showlegend=legend,
 
         legend=dict(
             font=dict(
-                size=12,
+                color="white",
+                size=12
+            ),
+            title_font=dict(
                 color="white"
             )
         ),
@@ -172,26 +193,45 @@ def style_fig(fig, height=420, legend=True):
     )
 
     fig.update_xaxes(
+        title_font=dict(
+            color="white",
+            size=13
+        ),
+        tickfont=dict(
+            color="white",
+            size=12
+        ),
         gridcolor=C_BORDER,
-        zeroline=False,
-        title_font=dict(color="white"),
-        tickfont=dict(color="white")
+        zeroline=False
     )
 
     fig.update_yaxes(
+        title_font=dict(
+            color="white",
+            size=13
+        ),
+        tickfont=dict(
+            color="white",
+            size=12
+        ),
         gridcolor=C_BORDER,
-        zeroline=False,
-        title_font=dict(color="white"),
-        tickfont=dict(color="white")
+        zeroline=False
     )
 
     fig.update_annotations(
-        font=dict(color="white")
+        font=dict(
+            color="white",
+            size=13
+        )
     )
 
+    # Remove subtitle if Plotly created one
+    try:
+        fig.layout.title.subtitle = None
+    except Exception:
+        pass
+
     return fig
-
-
 # ----------------------------------------------------------------------
 # DATA LOADING
 # ----------------------------------------------------------------------
@@ -862,10 +902,80 @@ with tab2:
 - Use the heatmap above to identify city–category combinations with the greatest digital opportunity.
 """)
 # ---- TAB 3: MAP ----
+# ------------------------------------------------------------
+# TAB 3 : MAP
+# ------------------------------------------------------------
 with tab3:
+
+    st.header("🗺️ Business Location Explorer")
+
     with st.container(border=True):
-        st.markdown("### Geographic Distribution")
-        map_mode = st.radio("Show on map", ["Opportunity businesses only", "All filtered businesses"], horizontal=True)
+
+        map_mode = st.radio(
+            "Show Businesses",
+            [
+                "Opportunity businesses only",
+                "All filtered businesses"
+            ],
+            horizontal=True
+        )
+
+        plot_df = (
+            df[df["Has_Website"] == "No"]
+            if map_mode == "Opportunity businesses only"
+            else df
+        )
+
+        if len(plot_df) == 0:
+            st.info("No businesses available.")
+            st.stop()
+
+        # ----------------------------------------------------
+        # Search Business
+        # ----------------------------------------------------
+
+        search_business = st.selectbox(
+            "🔍 Search Business",
+            ["All Businesses"] +
+            sorted(plot_df["Business_Name"].unique())
+        )
+
+        if search_business != "All Businesses":
+            plot_df = plot_df[
+                plot_df["Business_Name"] == search_business
+            ]
+
+        # ----------------------------------------------------
+        # KPI Cards
+        # ----------------------------------------------------
+
+        c1, c2, c3, c4 = st.columns(4)
+
+        c1.metric(
+            "Businesses",
+            len(plot_df)
+        )
+
+        c2.metric(
+            "Cities",
+            plot_df["City"].nunique()
+        )
+
+        c3.metric(
+            "Categories",
+            plot_df["Category"].nunique()
+        )
+
+        c4.metric(
+            "Average Rating",
+            f"{plot_df['Rating'].mean():.2f}"
+        )
+
+        st.divider()
+
+        # ----------------------------------------------------
+        # Legend
+        # ----------------------------------------------------
 
         st.markdown(
             '<span class="legend-chip"><span class="legend-dot" style="background:#D64550;"></span>High Opportunity</span>'
@@ -873,33 +983,217 @@ with tab3:
             '<span class="legend-chip"><span class="legend-dot" style="background:#028090;"></span>Has Website</span>',
             unsafe_allow_html=True,
         )
-        st.markdown("<div style='height:6px'></div>", unsafe_allow_html=True)
 
-        plot_df = df[df["Has_Website"] == "No"] if map_mode == "Opportunity businesses only" else df
+        # ----------------------------------------------------
+        # Create Map
+        # ----------------------------------------------------
 
-        if len(plot_df) == 0:
-            st.info("No businesses to display for the current filters.")
-        else:
-            center = [plot_df["Latitude"].mean(), plot_df["Longitude"].mean()]
-            m = folium.Map(location=center, zoom_start=7, tiles="CartoDB positron")
-            cluster = MarkerCluster().add_to(m)
-            color_map = {"High Opportunity": "#D64550", "Opportunity": "#F0A202", "Has Website": "#028090"}
-            for _, row in plot_df.iterrows():
-                popup_html = f"""
-                <div style="font-family:sans-serif; min-width:190px;">
-                    <div style="font-size:13px; font-weight:700; color:#0B2545;">{row['Business_Name']}</div>
-                    <div style="font-size:11.5px; color:#4A5578; margin:3px 0;">{row['Category']} — {row['Locality']}, {row['City']}</div>
-                    <div style="font-size:11.5px;">⭐ {row['Rating']} | {row['Opportunity_Flag']}</div>
-                    <div style="font-size:11.5px; color:#4A5578;">🅿️ {row['Parking']} &nbsp; 🚚 {row['Delivery']}</div>
-                </div>
-                """
-                folium.CircleMarker(
-                    location=[row["Latitude"], row["Longitude"]], radius=7, weight=2,
-                    color=color_map.get(row["Opportunity_Flag"], "gray"),
-                    fill=True, fill_color=color_map.get(row["Opportunity_Flag"], "gray"), fill_opacity=0.85,
-                    popup=folium.Popup(popup_html, max_width=260),
-                ).add_to(cluster)
-            st_folium(m, use_container_width=True, height=580)
+        center = [
+            plot_df["Latitude"].mean(),
+            plot_df["Longitude"].mean()
+        ]
+
+        m = folium.Map(
+            location=center,
+            zoom_start=7,
+            tiles="CartoDB positron"
+        )
+
+        Fullscreen().add_to(m)
+        MiniMap(toggle_display=True).add_to(m)
+        MousePosition().add_to(m)
+        MeasureControl().add_to(m)
+        LocateControl().add_to(m)
+
+        cluster = MarkerCluster().add_to(m)
+
+        color_map = {
+            "High Opportunity": "#D64550",
+            "Opportunity": "#F0A202",
+            "Has Website": "#028090"
+        }
+
+        for _, row in plot_df.iterrows():
+
+            popup_html = f"""
+            <div style="width:230px;">
+
+            <h4 style="margin-bottom:5px;color:#0B2545;">
+            {row['Business_Name']}
+            </h4>
+
+            <b>Category:</b> {row['Category']}<br>
+
+            <b>City:</b> {row['City']}<br>
+
+            <b>Locality:</b> {row['Locality']}<br>
+
+            <b>Rating:</b> ⭐ {row['Rating']}<br>
+
+            <b>Website:</b> {row['Has_Website']}<br>
+
+            <b>Parking:</b> {row['Parking']}<br>
+
+            <b>Delivery:</b> {row['Delivery']}<br>
+
+            <b>Hours:</b> {row['Opening_Hours']}<br>
+
+            <b>Phone:</b> {row['Phone']}<br>
+
+            <b>Opportunity:</b> {row['Opportunity_Flag']}<br>
+
+            <b>Coordinates:</b><br>
+
+            {row['Latitude']:.4f},
+            {row['Longitude']:.4f}
+
+            </div>
+            """
+
+            folium.CircleMarker(
+                location=[
+                    row["Latitude"],
+                    row["Longitude"]
+                ],
+                radius=7,
+                color=color_map.get(
+                    row["Opportunity_Flag"],
+                    "gray"
+                ),
+                fill=True,
+                fill_opacity=0.9,
+                popup=folium.Popup(
+                    popup_html,
+                    max_width=260
+                )
+            ).add_to(cluster)
+
+        folium.LayerControl().add_to(m)
+
+        st_folium(
+            m,
+            use_container_width=True,
+            height=600
+        )
+
+    # --------------------------------------------------------
+    # Row 2
+    # --------------------------------------------------------
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+
+        with st.container(border=True):
+
+            city = (
+                plot_df.groupby("City")
+                .size()
+                .reset_index(name="Businesses")
+                .sort_values(
+                    "Businesses",
+                    ascending=False
+                )
+            )
+
+            fig = px.bar(
+                city,
+                x="City",
+                y="Businesses",
+                color="Businesses",
+                title="Businesses by City"
+            )
+
+            style_fig(fig, height=420)
+
+            st.plotly_chart(
+                fig,
+                use_container_width=True
+            )
+
+    with col2:
+
+        with st.container(border=True):
+
+            category = (
+                plot_df.groupby("Category")
+                .size()
+                .reset_index(name="Businesses")
+                .sort_values(
+                    "Businesses",
+                    ascending=False
+                )
+            )
+
+            fig = px.pie(
+                category,
+                names="Category",
+                values="Businesses",
+                title="Businesses by Category"
+            )
+
+            style_fig(fig, height=420)
+
+            st.plotly_chart(
+                fig,
+                use_container_width=True
+            )
+
+    # --------------------------------------------------------
+    # Geographic Insights
+    # --------------------------------------------------------
+
+    with st.container(border=True):
+
+        top_city = (
+            plot_df["City"]
+            .value_counts()
+            .idxmax()
+        )
+
+        top_category = (
+            plot_df["Category"]
+            .value_counts()
+            .idxmax()
+        )
+
+        high_rating = (
+            plot_df["Rating"] >= 4.5
+        ).sum()
+
+        st.subheader("📌 Geographic Insights")
+
+        st.markdown(f"""
+
+### 🌍 Overview
+
+- Businesses displayed on the map: **{len(plot_df)}**
+
+- Cities covered: **{plot_df['City'].nunique()}**
+
+- Categories covered: **{plot_df['Category'].nunique()}**
+
+- Average Rating: **{plot_df['Rating'].mean():.2f}**
+
+### 📍 Major Findings
+
+- Highest concentration of businesses is in **{top_city}**.
+
+- Most common category is **{top_category}**.
+
+- **{high_rating} businesses** have ratings above **4.5**.
+
+### 💡 Recommendations
+
+- Prioritize locality-wise visits rather than random visits.
+
+- Target businesses with high ratings but no website.
+
+- Use the map to identify business clusters for efficient outreach.
+
+- Cities with dense business clusters should receive priority during digital transformation campaigns.
+
+""")
 
 # ---- TAB 4: TOP OPPORTUNITIES ----
 with tab4:
@@ -988,12 +1282,24 @@ with tab4:
             ascending=False
         )
 
-        top_n = st.slider(
-            "Show Top Businesses",
-            5,
-            min(50,len(ranked)),
-            min(10,len(ranked))
-        )
+       # Number of businesses available
+        max_businesses = len(ranked)
+
+        if max_businesses == 0:
+            st.warning("No opportunity businesses found for the selected filters.")
+            st.stop()
+
+        elif max_businesses == 1:
+            top_n = 1
+            st.info("Only 1 business matches the selected filters.")
+
+        else:
+            top_n = st.slider(
+        "Show Top Businesses",
+        min_value=1,
+        max_value=min(50, max_businesses),
+        value=min(10, max_businesses),
+    )
 
         st.dataframe(
             ranked[
