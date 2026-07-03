@@ -121,21 +121,6 @@ python -m streamlit run app.py
 ```
 
 ---
-
-## 📸 Dashboard Preview
-
-### Dashboard
-
-```
-reports/dashboard_summary.png
-```
-
-### Business Map
-
-```
-reports/geo_scatter.png
-```
-
 ---
 
 ## 📈 Libraries Used
