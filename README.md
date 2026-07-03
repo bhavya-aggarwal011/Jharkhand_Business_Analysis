@@ -93,7 +93,7 @@ The data has been cleaned and processed before visualization.
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Jharkhand-Business-Analysis.git
+git clone https://github.com/bhavya-aggarwal011/Jharkhand-Business-Analysis.git
 ```
 
 ### Navigate to Dashboard Folder
