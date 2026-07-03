@@ -222,7 +222,7 @@ def style_fig(fig, height=420, legend=True):
         font=dict(
             color="white",
             size=13
-        )
+        ) 
     )
 
     # Remove subtitle if Plotly created one
