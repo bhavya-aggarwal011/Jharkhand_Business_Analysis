@@ -1704,46 +1704,114 @@ with tab6:
 """)
 #--tab 7 key insights
 with tab7:
-    with st.container(border=True):
-        st.markdown("""
-## 📌 Key Insights & Final Recommendations
 
-### 1. Prioritize Restaurants & Cafes for Outreach
-These categories have the highest share of businesses without websites (8.9% and 6.0% respectively) and would benefit most from an online presence through menus, reviews, and online ordering.
+    st.header("📌 Key Insights & Business Recommendations")
 
-### 2. Focus on Jamshedpur and Dhanbad
-These two cities together account for **83%** of all businesses without websites, making them the highest-impact locations for digital outreach.
+    st.markdown(f"""
 
-### 3. Target High Opportunity Businesses First
-Begin with the **16 High Opportunity businesses** that have ratings above **4.0** but still lack websites, as they offer the highest ROI for digital adoption.
+## Executive Summary
 
-### 4. Promote Existing Amenities Online
-Nearly half of the businesses already provide facilities such as parking or delivery. A website or Google Business Profile can immediately showcase these services.
+The dashboard analyzes **{len(df):,} businesses** across **{df['City'].nunique()} cities** and **{df['Category'].nunique()} business categories** in Jharkhand to identify businesses with high digital growth potential.
 
-### 5. Recommend Cost-Effective Digital Solutions
-Instead of expensive custom websites, suggest a **Google Business Profile** along with a **single-page, mobile-friendly website** containing:
-- Contact Details
-- Business Hours
-- Location Map
-- Services/Menu
-- Customer Reviews
-
-### 6. Avoid Fully Digitized Categories
-Schools, Banks, Grocery Stores, and Supermarkets already have complete website coverage. Outreach efforts should instead focus on underserved sectors.
-
-### 7. Improve Service Alongside Digital Presence
-Businesses without websites have a lower average rating (**3.90**) compared to businesses with websites (**4.23**). Combining digital onboarding with basic service improvements can produce better business outcomes.
-
-### 8. Use the Digital Opportunity Score
-The **Digital Opportunity Score** combines ratings, amenities, and category demand into a single ranking, making it the most reliable list for prioritizing outreach.
-
-### 9. Plan Field Visits Using the Interactive Map
-Opportunity businesses are geographically clustered. Visiting businesses locality-by-locality is significantly more efficient than random visits.
-
-### 10. Differentiate Strategies by Market Saturation
-For highly digitized category-city combinations, businesses should compete through better website quality and SEO rather than simply having a website.
+The analysis primarily focuses on businesses that **do not have a website**, helping identify opportunities for digital transformation.
 
 ---
 
+## Key Findings
 
-        """)
+### 🌐 Website Adoption
+
+- **{HAS_WEB:,} businesses ({HAS_WEB/len(df)*100:.1f}%)** already have a website.
+- **{NO_WEB:,} businesses ({NO_WEB/len(df)*100:.1f}%)** still operate without a website.
+- Businesses without websites represent the largest opportunity for digital onboarding.
+
+---
+
+### ⭐ Business Ratings
+
+- Average rating of businesses without websites: **{AVG_RATING_NOWEB:.2f}/5**
+- Average rating of businesses with websites: **{AVG_RATING_WEB:.2f}/5**
+
+Businesses with an online presence generally receive higher customer ratings, indicating the positive impact of digital visibility.
+
+---
+
+### 🏙 City Analysis
+
+- **{df['City'].value_counts().idxmax()}** contains the highest concentration of businesses.
+- Cities with a large number of businesses but low website adoption should be prioritized for digital outreach.
+
+---
+
+### 🏢 Category Analysis
+
+- **{df['Category'].value_counts().idxmax()}** is the largest business category.
+- Categories having many businesses without websites offer the highest opportunity for website development and Google Business Profile optimization.
+
+---
+
+### 🎯 Digital Opportunity Analysis
+
+- **{HIGH_OPP} businesses** are classified as **High Opportunity**.
+- These businesses combine strong customer ratings with the absence of a website, making them the best candidates for digital transformation.
+
+---
+
+## Strategic Recommendations
+
+### 1️⃣ Prioritize High Opportunity Businesses
+
+Start digital onboarding with businesses having the highest **Digital Opportunity Score**, as they are expected to generate the highest return on investment.
+
+---
+
+### 2️⃣ Focus on High-Demand Cities
+
+Launch awareness campaigns in cities having the highest number of businesses without websites to maximize outreach efficiency.
+
+---
+
+### 3️⃣ Target Popular Business Categories
+
+Restaurants, cafés, clinics, retail stores, and other customer-facing businesses can gain significant visibility through a professional website and Google Business Profile.
+
+---
+
+### 4️⃣ Promote Basic Digital Presence
+
+Recommend affordable digital solutions such as:
+
+- Google Business Profile
+- Mobile-friendly Website
+- Online Contact Information
+- Business Hours
+- Location Map
+- Customer Reviews
+- WhatsApp Integration
+
+---
+
+### 5️⃣ Improve Customer Experience
+
+Businesses with lower ratings should focus on improving service quality while simultaneously building an online presence to attract more customers.
+
+---
+
+### 6️⃣ Use Data-Driven Decision Making
+
+The **Digital Opportunity Score** combines:
+
+- Customer Rating
+- Category Demand
+- Business Amenities
+- Website Availability
+
+to objectively rank businesses for digital transformation.
+
+---
+
+## Project Outcome
+
+This dashboard provides an interactive platform that enables businesses, consultants, startups, and government agencies to identify digitally underserved businesses and prioritize them using data-driven insights. By combining business information, ratings, amenities, geographic distribution, and digital opportunity scoring, the dashboard supports informed decision-making for accelerating digital adoption across Jharkhand.
+
+""")
